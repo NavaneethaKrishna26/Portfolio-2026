@@ -1,0 +1,34 @@
+﻿
+D:\portfolio\src\components\About.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\portfolio\src\components\Contact.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\portfolio\src\components\Hero.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\portfolio\src\components\Projects.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+D:\portfolio\src\components\SkillDemo.jsx
+   2:10  error    'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                       no-unused-vars
+  23:22  warning  Compilation Skipped: The 'eval' function is not supported
+
+Eval is an anti-pattern in JavaScript, and the code executed cannot be evaluated by React Compiler.
+
+  21 |       // Basic evaluator for demo purposes
+  22 |       const fullEq = equation + display;
+> 23 |       const result = eval(fullEq.replace('x', '*')); 
+     |                      ^^^^ The 'eval' function is not supported
+  24 |       setDisplay(String(result));
+  25 |       setEquation('');
+  26 |     } catch {
+
+  react-hooks/unsupported-syntax
+
+D:\portfolio\src\components\Skills.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+Γ£û 7 problems (6 errors, 1 warning)
+
