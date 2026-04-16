@@ -22,7 +22,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="container">
         <div className="logo">
-          Navaneetha<span>.dev</span>
+          NK<span>.dev</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
           <div className="nav-links">
@@ -31,18 +31,18 @@ const Navbar = () => {
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
           </div>
-          <button 
-            onClick={toggleTheme} 
-            className="theme-toggle" 
-            aria-label="Toggle theme" 
+          <button
+            onClick={toggleTheme}
+            className="theme-toggle"
+            aria-label="Toggle theme"
             title="Toggle dark mode"
-            style={{ 
-              background: 'transparent', 
-              border: 'none', 
-              cursor: 'pointer', 
-              color: 'var(--text-muted)', 
-              display: 'flex', 
-              alignItems: 'center', 
+            style={{
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              color: 'var(--text-muted)',
+              display: 'flex',
+              alignItems: 'center',
               justifyContent: 'center',
               padding: '0.25rem',
               transition: 'color 0.2s ease, transform 0.2s ease'

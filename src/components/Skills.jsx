@@ -1,6 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ArrowRight, Sparkles, Network, Database, Settings, Zap, 
+  Key, ShieldCheck, Box, Layout, Code2, Search, Map, 
+  Blocks, MonitorPlay, Server, GitBranch
+} from 'lucide-react';
 
 const skillsData = [
   {
@@ -22,47 +26,81 @@ const skillsData = [
   {
     title: "System & Architecture",
     highlight: true,
-    span: 2,
     items: ["API Contract Design", "Full Stack Integration", "MVC Architecture", "Pagination", "Error Handling", "Clean Code Practices"]
   },
   {
     title: "Development Workflow",
     highlight: true,
     workflow: true,
-    span: 2,
     items: ["Requirement Analysis", "MVP Planning", "API Design", "DB Design", "Implementation", "Integration", "Testing", "Presentation"]
   }
 ];
 
+const devicon = (path) => `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${path}`;
+
+const getIcon = (skillName) => {
+  const mapping = {
+    // Brand Logos
+    "React (Vite)": { type: "img", src: devicon("react/react-original.svg") },
+    "JavaScript": { type: "img", src: devicon("javascript/javascript-original.svg") },
+    "HTML": { type: "img", src: devicon("html5/html5-original.svg") },
+    "CSS": { type: "img", src: devicon("css3/css3-original.svg") },
+    "Spring Boot": { type: "img", src: devicon("spring/spring-original.svg") },
+    "MySQL": { type: "img", src: devicon("mysql/mysql-original.svg") },
+    "Git": { type: "img", src: devicon("git/git-original.svg") },
+    "GitHub": { type: "img", src: devicon("github/github-original.svg") },
+    "Figma": { type: "img", src: devicon("figma/figma-original.svg") },
+    "VS Code": { type: "img", src: devicon("vscode/vscode-original.svg") },
+    "Postman": { type: "img", src: devicon("postman/postman-original.svg") },
+    
+    // Abstract Concepts with colorful Lucide Icons
+    "JWT Authentication": { type: "lucide", comp: <Key size={18} color="#eab308" /> }, // Yellow
+    "REST API Design": { type: "lucide", comp: <Network size={18} color="#06b6d4" /> }, // Cyan
+    "API Integration": { type: "lucide", comp: <Zap size={18} color="#f59e0b" /> }, // Amber
+    "Component Design": { type: "lucide", comp: <Box size={18} color="#ec4899" /> }, // Pink
+    "UI Flow Planning": { type: "lucide", comp: <Layout size={18} color="#8b5cf6" /> }, // Purple
+    "Database Design": { type: "lucide", comp: <Database size={18} color="#10b981" /> }, // Emerald
+    "Validation": { type: "lucide", comp: <ShieldCheck size={18} color="#14b8a6" /> }, // Teal
+    "Clean Code Practices": { type: "lucide", comp: <Code2 size={18} color="#3b82f6" /> }, // Blue
+    "Layered Architecture": { type: "lucide", comp: <Blocks size={18} color="#8b5cf6" /> }, // Purple
+    "Exception Handling": { type: "lucide", comp: <ShieldCheck size={18} color="#ef4444" /> }, // Red
+    "Relationships": { type: "lucide", comp: <GitBranch size={18} color="#f97316" /> }, // Orange
+    "Query Optimization": { type: "lucide", comp: <Zap size={18} color="#eab308" /> }, // Yellow
+    
+    // Workflow Icons
+    "Requirement Analysis": { type: "lucide", comp: <Search size={18} color="#3b82f6" /> },
+    "MVP Planning": { type: "lucide", comp: <Map size={18} color="#8b5cf6" /> },
+    "API Design": { type: "lucide", comp: <Network size={18} color="#06b6d4" /> },
+    "DB Design": { type: "lucide", comp: <Database size={18} color="#10b981" /> },
+    "Implementation": { type: "lucide", comp: <Code2 size={18} color="#f59e0b" /> },
+    "Integration": { type: "lucide", comp: <Blocks size={18} color="#ef4444" /> },
+    "Testing": { type: "lucide", comp: <ShieldCheck size={18} color="#14b8a6" /> },
+    "Presentation": { type: "lucide", comp: <MonitorPlay size={18} color="#ec4899" /> }
+  };
+  
+  return mapping[skillName] || { type: "lucide", comp: <Settings size={18} color="#94a3b8" /> };
+};
+
 const Skills = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1, 
-      transition: { staggerChildren: 0.15 } 
-    }
-  };
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeCategory = skillsData[activeIndex];
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-  };
-
-  const tagVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.4 } }
+  const fadeUp = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
   };
 
   return (
-    <section className="section bg-secondary" id="skills" style={{ position: 'relative' }}>
+    <section className="section bg-secondary" id="skills">
       <div className="container">
         
         {/* Header Block */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
-          style={{ textAlign: 'center', marginBottom: '3.5rem' }}
+          variants={fadeUp}
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
           <h2 className="section-title" style={{ marginBottom: '0.75rem' }}>My Skills</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', margin: '0 auto', maxWidth: '650px' }}>
@@ -70,44 +108,83 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        {/* Skills Grid */}
+        {/* INTERACTIVE TAB WINDOW UX */}
         <motion.div 
-          className="skills-layout"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.7 }}
+          className="skills-dashboard"
         >
-          {skillsData.map((category, index) => (
-            <motion.div 
-              key={index} 
-              variants={cardVariants}
-              className={`skill-card ${category.highlight ? 'highlight-card' : ''} ${category.span === 2 ? 'span-2' : ''}`}
-            >
-              <h3 className="card-title">
-                {category.title}
-                {category.highlight && <Sparkles size={16} className="highlight-icon" />}
-              </h3>
-              
-              <motion.div 
-                 className={`card-tags ${category.workflow ? 'workflow-tags' : ''}`}
-                 variants={containerVariants}
+          
+          {/* SIDEBAR NAVIGATION */}
+          <div className="skills-sidebar">
+            {skillsData.map((category, index) => (
+              <button
+                key={category.title}
+                className={`sidebar-btn ${activeIndex === index ? 'active-tab' : ''}`}
+                onClick={() => setActiveIndex(index)}
               >
-                {category.items.map((item, i) => (
-                  <React.Fragment key={i}>
-                    <motion.span variants={tagVariants} className={`skill-tag ${category.highlight ? 'highlight-tag' : ''}`}>
-                      {item}
-                    </motion.span>
-                    {category.workflow && i < category.items.length - 1 && (
-                      <motion.span variants={tagVariants} className="workflow-arrow">
-                        <ArrowRight size={14} />
-                      </motion.span>
-                    )}
-                  </React.Fragment>
-                ))}
+                <div className="btn-content">
+                  <span>{category.title}</span>
+                  {category.highlight && <Sparkles size={14} className="highlight-indicator" />}
+                </div>
+                {/* Active Indicator Line */}
+                {activeIndex === index && (
+                  <motion.div 
+                    layoutId="active-indicator" 
+                    className="active-line" 
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* DYNAMIC CONTENT PANE */}
+          <div className="skills-pane">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -15 }}
+                transition={{ duration: 0.3 }}
+                className="pane-inner"
+              >
+                <h3 className="pane-title">
+                  {activeCategory.title}
+                  {activeCategory.highlight && <Sparkles size={18} className="highlight-icon" />}
+                </h3>
+
+                <div className={`pane-tags ${activeCategory.workflow ? 'workflow-mode' : ''}`}>
+                  {activeCategory.items.map((item, i) => {
+                    const iconDef = getIcon(item);
+                    return (
+                      <React.Fragment key={i}>
+                        <span className={`detail-tag ${activeCategory.highlight ? 'accent-tag' : ''}`}>
+                          <span className="skill-icon">
+                            {iconDef.type === 'img' ? (
+                               <img src={iconDef.src} alt={item} className={item === 'GitHub' ? 'github-icon' : ''} />
+                            ) : (
+                               iconDef.comp
+                            )}
+                          </span>
+                          <span>{item}</span>
+                        </span>
+                        {activeCategory.workflow && i < activeCategory.items.length - 1 && (
+                          <span className="workflow-arrow">
+                            <ArrowRight size={16} />
+                          </span>
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
+
               </motion.div>
-            </motion.div>
-          ))}
+            </AnimatePresence>
+          </div>
+
         </motion.div>
 
         {/* Strengths & Value Statement */}
@@ -128,120 +205,181 @@ const Skills = () => {
       </div>
 
       <style>{`
-        /* Local Styles for Clean Skills Grid */
-        .skills-layout {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-          margin-bottom: 4rem;
-        }
-
-        .skill-card {
+        /* NEW UX: Skills Dashboard Layout */
+        .skills-dashboard {
+          display: flex;
           background-color: var(--bg-color);
           border: 1px solid var(--border-color);
-          border-radius: 1rem;
-          padding: 1.75rem;
-          transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+          border-radius: 1.5rem;
+          overflow: hidden;
+          margin-bottom: 4rem;
+          box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+          min-height: 400px;
+        }
+
+        /* SIDEBAR STYLES */
+        .skills-sidebar {
+          width: 30%;
+          min-width: 250px;
+          background-color: var(--bg-secondary);
+          border-right: 1px solid var(--border-color);
           display: flex;
           flex-direction: column;
+          padding: 1.5rem 0;
         }
 
-        .skill-card:hover {
-          transform: translateY(-4px) scale(1.01);
-          box-shadow: 0 12px 30px rgba(0,0,0,0.04);
-          border-color: var(--border-color);
+        .sidebar-btn {
+          position: relative;
+          background: transparent;
+          border: none;
+          padding: 1.25rem 2rem;
+          text-align: left;
+          font-size: 1.05rem;
+          font-weight: 500;
+          color: var(--text-muted);
+          cursor: pointer;
+          transition: color 0.3s ease, background-color 0.3s ease;
+          outline: none;
         }
 
-        html.dark .skill-card:hover {
-          box-shadow: 0 12px 30px rgba(255,255,255,0.03);
-          border-color: var(--text-muted);
-        }
-
-        /* Span Controls for Desktop */
-        .span-2 {
-          grid-column: span 2;
-        }
-
-        /* Highlighting Logic */
-        .highlight-card {
-          border: 1px solid var(--accent-color);
-          box-shadow: 0 0 20px rgba(37, 99, 235, 0.04);
-          background-color: rgba(37, 99, 235, 0.01);
+        .sidebar-btn:hover {
+          color: var(--text-main);
+          background-color: rgba(0,0,0,0.02);
         }
         
-        html.dark .highlight-card {
-          box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
-          background-color: rgba(59, 130, 246, 0.02);
+        html.dark .sidebar-btn:hover { background-color: rgba(255,255,255,0.02); }
+
+        .sidebar-btn.active-tab {
+          color: var(--text-main);
+          font-weight: 600;
+          background-color: var(--bg-color);
         }
 
-        .card-title {
-          font-size: 1.15rem;
-          font-weight: 600;
-          color: var(--text-main);
-          margin-bottom: 1.25rem;
+        .btn-content {
           display: flex;
           align-items: center;
           gap: 0.5rem;
         }
 
-        .highlight-icon {
+        .highlight-indicator {
           color: var(--accent-color);
         }
 
-        .card-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.6rem;
+        .active-line {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 4px;
+          background-color: var(--accent-color);
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
         }
 
-        .workflow-tags {
+        /* PANE CONTENT STYLES */
+        .skills-pane {
+          flex: 1;
+          padding: 3rem;
+          display: flex;
+          align-items: flex-start;
+        }
+
+        .pane-inner {
+          width: 100%;
+        }
+
+        .pane-title {
+          font-size: 1.8rem;
+          font-weight: 600;
+          color: var(--text-main);
+          margin-bottom: 2rem;
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+        }
+
+        .highlight-icon {
+          color: var(--accent-color);
+          opacity: 0.8;
+        }
+
+        .pane-tags {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1rem;
+        }
+
+        /* Specialized flow for Development Sequence */
+        .workflow-mode {
           align-items: center;
         }
 
-        .skill-tag {
+        .detail-tag {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.6rem;
           background-color: var(--bg-secondary);
-          color: var(--text-muted);
-          border: 1px solid var(--border-color);
-          padding: 0.45rem 0.85rem;
-          border-radius: 2rem;
-          font-size: 0.85rem;
-          font-weight: 500;
-          transition: background-color 0.3s, color 0.3s;
-        }
-
-        .skill-tag:hover {
-          background-color: var(--bg-color);
           color: var(--text-main);
+          border: 1px solid var(--border-color);
+          padding: 0.75rem 1.25rem;
+          border-radius: 3rem;
+          font-size: 0.95rem;
+          font-weight: 500;
+          transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .highlight-tag {
+        .detail-tag:hover {
+          transform: translateY(-2px);
+          border-color: var(--text-muted);
+        }
+
+        .accent-tag {
           border-color: rgba(37, 99, 235, 0.2);
+          background-color: rgba(37, 99, 235, 0.02);
+        }
+
+        html.dark .accent-tag {
+          border-color: rgba(59, 130, 246, 0.3);
+          background-color: rgba(59, 130, 246, 0.05);
+        }
+
+        .skill-icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         
-        html.dark .highlight-tag {
-          border-color: rgba(59, 130, 246, 0.3);
+        .skill-icon img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+        }
+
+        /* Fix GitHub icon turning invisible on dark mode since original is black */
+        html.dark .github-icon {
+           filter: invert(1);
         }
 
         .workflow-arrow {
           color: var(--accent-color);
           display: flex;
           align-items: center;
-          opacity: 0.8;
+          opacity: 0.6;
         }
 
-        /* Bottom Section Styles */
+        /* BOTTOM SECTION */
         .value-section {
           text-align: center;
           margin-top: 2rem;
-          padding-top: 3rem;
           border-top: 1px solid var(--border-color);
+          padding-top: 3rem;
         }
 
         .strengths-line {
           color: var(--text-main);
           font-size: 1.05rem;
           letter-spacing: 1px;
-          margin-bottom: 1rem;
+          margin-bottom: 1.25rem;
           font-weight: 600;
         }
 
@@ -254,23 +392,44 @@ const Skills = () => {
           font-style: italic;
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 1024px) {
-          .skills-layout {
-            grid-template-columns: repeat(2, 1fr);
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 900px) {
+          .skills-dashboard {
+            flex-direction: column;
+            min-height: auto;
           }
-          .span-2 {
-             grid-column: span 2; /* Still span 2 to consume entire row on Tablet */
+          
+          .skills-sidebar {
+            width: 100%;
+            border-right: none;
+            border-bottom: 1px solid var(--border-color);
+            flex-direction: row;
+            overflow-x: auto;
+            padding: 0;
           }
-        }
+          
+          /* Hide scrollbar for clean tab look on mobile */
+          .skills-sidebar::-webkit-scrollbar { display: none; }
+          .skills-sidebar { -ms-overflow-style: none; scrollbar-width: none; }
 
-        @media (max-width: 640px) {
-          .skills-layout {
-            grid-template-columns: 1fr;
+          .sidebar-btn {
+            padding: 1rem 1.5rem;
+            white-space: nowrap;
           }
-          .span-2 {
-             grid-column: span 1; /* Reset span on Mobile */
+
+          .active-line {
+            left: 0;
+            top: auto;
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            border-radius: 4px 4px 0 0;
           }
+
+          .skills-pane {
+            padding: 2rem 1.5rem;
+          }
+
           .strengths-line {
              font-size: 0.9rem;
           }
