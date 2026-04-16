@@ -34,7 +34,7 @@ const educationData = [
 
 const Education = () => {
   return (
-    <section className="section bg-secondary" id="education">
+    <section className="section" id="education">
       <div className="container">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -59,9 +59,7 @@ const Education = () => {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className="education-card"
             >
-              <div className="education-dot">
-                <GraduationCap size={20} />
-              </div>
+              <div className="education-dot"></div>
               <div className="education-content">
                 <div className="education-header">
                   <h3 className="education-degree">{item.degree}</h3>

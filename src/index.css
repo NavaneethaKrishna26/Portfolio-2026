@@ -498,11 +498,14 @@ html.dark .hero-shape {
   line-height: 1.8;
 }
 
-/* Education Timeline */
+/* Education Minimal Timeline */
 .education-timeline {
   max-width: 800px;
   margin: 0 auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
 }
 
 .education-timeline::before {
@@ -510,7 +513,7 @@ html.dark .hero-shape {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 2rem;
+  left: 5px;
   width: 2px;
   background-color: var(--border-color);
   z-index: 0;
@@ -518,47 +521,24 @@ html.dark .hero-shape {
 
 .education-card {
   position: relative;
-  margin-bottom: 2.5rem;
-  padding-left: 5rem;
+  padding-left: 2.5rem;
   z-index: 1;
-}
-
-.education-card:last-child {
-  margin-bottom: 0;
 }
 
 .education-dot {
   position: absolute;
-  left: 1rem;
-  top: 0;
-  width: 2.5rem;
-  height: 2.5rem;
+  left: 0;
+  top: 0.4rem;
+  width: 12px;
+  height: 12px;
   background-color: var(--bg-color);
   border: 2px solid var(--accent-color);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accent-color);
-  box-shadow: 0 0 0 4px var(--bg-secondary);
 }
 
 .education-content {
-  background-color: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 1rem;
-  padding: 2rem;
+  background-color: transparent;
   transition: all 0.3s ease;
-}
-
-.education-content:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-  border-color: var(--accent-color);
-}
-
-html.dark .education-content:hover {
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 .education-header {
@@ -571,7 +551,7 @@ html.dark .education-content:hover {
 }
 
 .education-degree {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-main);
   flex: 1;
@@ -581,32 +561,24 @@ html.dark .education-content:hover {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.35rem 0.75rem;
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 2rem;
   font-size: 0.875rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--text-muted);
 }
 
 .score-highlight {
-  background-color: rgba(79, 70, 229, 0.1);
-  border-color: rgba(79, 70, 229, 0.2);
   color: var(--accent-color);
 }
 
 html.dark .score-highlight {
-  background-color: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.3);
   color: #818cf8;
 }
 
 .education-institution {
   font-size: 1rem;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  font-weight: 400;
+  margin-bottom: 1rem;
+  font-weight: 500;
 }
 
 .education-meta {
@@ -621,32 +593,6 @@ html.dark .score-highlight {
   gap: 0.5rem;
   font-size: 0.875rem;
   color: var(--text-muted);
-}
-
-/* Light mode component vibrancy for education */
-html:not(.dark) .education-content {
-  background: linear-gradient(to bottom right, #ffffff, #f8fafc);
-}
-html:not(.dark) .education-content:hover {
-  box-shadow: 0 12px 30px -5px rgba(99, 102, 241, 0.15);
-  border-color: #a5b4fc;
-}
-
-@media (max-width: 640px) {
-  .education-timeline::before {
-    left: 1.25rem;
-  }
-  .education-card {
-    padding-left: 3.5rem;
-  }
-  .education-dot {
-    left: 0;
-    width: 2.5rem;
-    height: 2.5rem;
-  }
-  .education-content {
-    padding: 1.5rem;
-  }
 }
 
 /* Skills */
