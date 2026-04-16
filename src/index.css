@@ -819,6 +819,87 @@ html.dark .toast {
   font-size: 0.875rem;
 }
 
+/* --- Light Mode Component Vibrancy --- */
+html:not(.dark) .skill-category:nth-child(1) {
+  background: linear-gradient(145deg, #eff6ff, #ffffff);
+  border-color: #bfdbfe;
+}
+html:not(.dark) .skill-category:nth-child(2) {
+  background: linear-gradient(145deg, #f5f3ff, #ffffff);
+  border-color: #ddd6fe;
+}
+html:not(.dark) .skill-category:nth-child(3) {
+  background: linear-gradient(145deg, #f0fdf4, #ffffff);
+  border-color: #bbf7d0;
+}
+html:not(.dark) .skill-category:nth-child(4) {
+  background: linear-gradient(145deg, #fff7ed, #ffffff);
+  border-color: #fed7aa;
+}
+html:not(.dark) .skill-category:nth-child(5) {
+  background: linear-gradient(145deg, #fdf4ff, #ffffff);
+  border-color: #f5d0fe;
+}
+html:not(.dark) .skill-category {
+  box-shadow: 0 4px 15px -3px rgba(0,0,0,0.02);
+}
+html:not(.dark) .skill-category:hover {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+html:not(.dark) .project-card {
+  background: linear-gradient(to bottom right, #ffffff, #faf5ff);
+  border-color: #e9d5ff;
+}
+html:not(.dark) .project-card:hover {
+  box-shadow: 0 12px 30px -5px rgba(168, 85, 247, 0.15);
+  border-color: #d8b4fe;
+}
+
+html:not(.dark) .demo-container {
+  background: linear-gradient(135deg, #ffffff, #ecfeff);
+  border-color: #a5f3fc;
+}
+
+html:not(.dark) .contact-action-btn {
+  background: linear-gradient(145deg, #ffffff, #eef2ff);
+  border-color: #c7d2fe;
+}
+html:not(.dark) .contact-action-btn:hover {
+  background: linear-gradient(145deg, #eef2ff, #e0e7ff);
+  border-color: #818cf8;
+}
+
+html:not(.dark) .calc-btn {
+  background: linear-gradient(to bottom, #ffffff, #f8fafc);
+}
+html:not(.dark) .calc-display {
+  background-color: #e0f2fe;
+  color: #0369a1;
+  border-color: #bae6fd;
+}
+html:not(.dark) .calc-btn.op {
+  background: linear-gradient(to bottom, #6366f1, #4f46e5);
+  border-color: #4f46e5;
+  color: white;
+}
+
+html:not(.dark) .tag {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+html:not(.dark) .btn-primary {
+  background: linear-gradient(to right, #4f46e5, #6366f1);
+  color: #ffffff;
+  border: none;
+}
+html:not(.dark) .btn-primary:hover {
+  background: linear-gradient(to right, #4338ca, #4f46e5);
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero-title {
