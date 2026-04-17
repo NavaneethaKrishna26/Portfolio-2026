@@ -1237,3 +1237,54 @@ html:not(.dark) .tag {
     padding: 4rem 0;
   }
 }
+
+/* Project Card Actions Minimal Layout */
+.project-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.project-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.project-action-btn:hover {
+  color: var(--accent-color);
+  background-color: var(--bg-secondary);
+}
+
+.project-action-btn.active {
+  color: var(--accent-color);
+}
+
+.project-action-btn.github {
+  color: var(--text-main);
+}
+
+.project-action-btn.github:hover {
+  background-color: var(--text-main);
+  color: var(--bg-color);
+}
+
+@media (max-width: 480px) {
+  .project-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+}

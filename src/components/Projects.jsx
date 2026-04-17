@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Code2, Server, LayoutTemplate, Box } from 'lucide-react';
+import { Code2, Server, LayoutTemplate, Box, ChevronDown } from 'lucide-react';
 
 const projectsData = [
   {
@@ -176,16 +176,25 @@ const ProjectCard = ({ project, index }) => {
         )}
       </AnimatePresence>
 
-      {/* Footer actions */}
-      <div className="project-links" style={{ marginTop: '1.25rem' }}>
+      {/* Minimal Footer actions */}
+      <div className="project-actions">
         <button
           onClick={() => setExpanded(!expanded)}
-          className="btn btn-outline"
+          className={`project-action-btn ${expanded ? 'active' : ''}`}
         >
           {expanded ? 'Show Less' : 'Know More'}
+          <motion.span animate={{ rotate: expanded ? 180 : 0 }}>
+            <ChevronDown size={16} />
+          </motion.span>
         </button>
-        <a href={project.githubDomain} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
-          <Code2 size={16} /> View Code
+        <a 
+          href={project.githubDomain} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="project-action-btn github"
+        >
+          <Code2 size={16} />
+          <span>View Code</span>
         </a>
       </div>
     </motion.div>
