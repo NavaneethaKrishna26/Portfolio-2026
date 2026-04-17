@@ -103,7 +103,7 @@ const Hero = () => {
             <a href="#projects" className="btn btn-primary">
               View Projects <ArrowRight size={18} />
             </a>
-            <a href="#resume" className="btn btn-outline" style={{ display: 'inline-flex', gap: '0.5rem', alignItems: 'center' }}>
+            <a href="#resume" className="btn btn-outline">
               Download Resume <Download size={18} />
             </a>
           </motion.div>

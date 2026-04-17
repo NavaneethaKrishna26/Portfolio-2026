@@ -181,11 +181,10 @@ const ProjectCard = ({ project, index }) => {
         <button
           onClick={() => setExpanded(!expanded)}
           className="btn btn-outline"
-          style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', borderRadius: '2rem' }}
         >
           {expanded ? 'Show Less' : 'Know More'}
         </button>
-        <a href={project.githubDomain} target="_blank" rel="noopener noreferrer" className="btn btn-outline" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }}>
+        <a href={project.githubDomain} target="_blank" rel="noopener noreferrer" className="btn btn-outline">
           <Code2 size={16} /> View Code
         </a>
       </div>
