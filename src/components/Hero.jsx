@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Download, ChevronDown } from 'lucide-react';
 
-const roles = ["Full Stack Developer", "Problem Solver", "UI Enthusiast"];
+const roles = ["Full Stack Developer", "Problem Solver"];
 
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState('');
@@ -103,7 +103,7 @@ const Hero = () => {
             <a href="#projects" className="btn btn-primary">
               View Projects <ArrowRight size={18} />
             </a>
-            <a href="#resume" className="btn btn-outline">
+            <a href="/resume.pdf" download="Navaneetha_Krishna_Resume.pdf" className="btn btn-outline">
               Download Resume <Download size={18} />
             </a>
           </motion.div>

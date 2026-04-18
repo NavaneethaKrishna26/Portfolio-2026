@@ -112,7 +112,7 @@ const Contact = () => {
           </motion.p>
 
           <motion.div className="resume-container" variants={itemVariants}>
-            <a href="#resume-link" className="btn btn-primary">
+            <a href="/resume.pdf" download="Navaneetha_Krishna_Resume.pdf" className="btn btn-primary">
               Download Resume <Download size={20} />
             </a>
             <span className="text-small">Last updated: 2026</span>
