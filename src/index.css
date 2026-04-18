@@ -1238,11 +1238,13 @@ html:not(.dark) .tag {
   }
 }
 
+
 /* Project Card Actions Minimal Layout */
 .project-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap;
   margin-top: 1.5rem;
   padding-top: 1.25rem;
   border-top: 1px solid var(--border-color);
@@ -1281,10 +1283,3 @@ html:not(.dark) .tag {
   color: var(--bg-color);
 }
 
-@media (max-width: 480px) {
-  .project-actions {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: stretch;
-  }
-}
