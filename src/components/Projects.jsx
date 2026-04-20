@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionTemplate, useMotionValue, useSpring } from 'framer-motion';
 import { Code2, Server, LayoutTemplate, Box, ChevronDown } from 'lucide-react';
 
 const projectsData = [
@@ -132,6 +132,38 @@ const renderIcon = (badge) => {
 
 const ProjectCard = ({ project, index }) => {
   const [expanded, setExpanded] = useState(false);
+  const tiltX = useMotionValue(0);
+  const tiltY = useMotionValue(0);
+  const shineX = useMotionValue(50);
+  const shineY = useMotionValue(50);
+  const shineOpacity = useMotionValue(0);
+
+  const smoothTiltX = useSpring(tiltX, { stiffness: 90, damping: 24, mass: 0.8 });
+  const smoothTiltY = useSpring(tiltY, { stiffness: 90, damping: 24, mass: 0.8 });
+  const smoothShineOpacity = useSpring(shineOpacity, { stiffness: 110, damping: 22 });
+  const shineGradient = useMotionTemplate`radial-gradient(circle at ${shineX}% ${shineY}%, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.22) 16%, rgba(255, 255, 255, 0.06) 36%, rgba(255, 255, 255, 0) 62%)`;
+
+  const handleCardMouseMove = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+
+    const maxTilt = 5;
+    tiltY.set((x - 0.5) * maxTilt * 2);
+    tiltX.set((0.5 - y) * maxTilt * 2);
+
+    shineX.set(x * 100);
+    shineY.set(y * 100);
+    shineOpacity.set(1);
+  };
+
+  const handleCardMouseLeave = () => {
+    tiltX.set(0);
+    tiltY.set(0);
+    shineOpacity.set(0);
+    shineX.set(50);
+    shineY.set(50);
+  };
 
   return (
     <motion.div
@@ -141,7 +173,21 @@ const ProjectCard = ({ project, index }) => {
       exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
       transition={{ duration: 0.4, delay: index * 0.05 }}
       className="project-card"
+      style={{
+        rotateX: smoothTiltX,
+        rotateY: smoothTiltY,
+        transformPerspective: 1200,
+      }}
+      onMouseMove={handleCardMouseMove}
+      onMouseLeave={handleCardMouseLeave}
     >
+      <motion.div
+        className="project-card-shine"
+        style={{
+          opacity: smoothShineOpacity,
+          background: shineGradient,
+        }}
+      />
       <div className="project-badge" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
         {renderIcon(project.badge)}
         {project.badge}

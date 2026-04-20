@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 
 const navItems = [
@@ -15,11 +15,17 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress, scrollY } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
+  });
+  const navProgressRaw = useTransform(scrollY, [0, 320], [0, 1]);
+  const navProgress = useSpring(navProgressRaw, {
+    stiffness: 90,
+    damping: 26,
+    mass: 0.8,
   });
 
   useEffect(() => {
@@ -75,6 +81,7 @@ const Navbar = () => {
     <>
       <motion.nav 
         className={`navbar ${isScrolled ? 'scrolled' : ''}`}
+        style={{ '--nav-progress': navProgress }}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}

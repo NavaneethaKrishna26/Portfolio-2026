@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { ArrowRight, Download, ChevronDown } from 'lucide-react';
 
 const roles = ["Full Stack Developer", "Problem Solver", "Java Enthusiast"];
 
 const Hero = () => {
+  const heroRef = useRef(null);
   const [currentRole, setCurrentRole] = useState('');
   const [isDeletingRole, setIsDeletingRole] = useState(false);
   const [roleLoop, setRoleLoop] = useState(0);
@@ -40,10 +41,51 @@ const Hero = () => {
   const fullTagline = "I build scalable and user-friendly web applications";
   const [tagline, setTagline] = useState('');
   const [taglineComplete, setTaglineComplete] = useState(false);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const parallaxX = useSpring(mouseX, { stiffness: 90, damping: 24 });
-  const parallaxY = useSpring(mouseY, { stiffness: 90, damping: 24 });
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const titleY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -60]), {
+    stiffness: 80,
+    damping: 24,
+    mass: 0.7,
+  });
+  const subtitleY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -90]), {
+    stiffness: 80,
+    damping: 24,
+    mass: 0.7,
+  });
+
+  const orbNearY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -30]), {
+    stiffness: 75,
+    damping: 25,
+  });
+  const orbMidY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -60]), {
+    stiffness: 75,
+    damping: 25,
+  });
+  const orbFarY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -120]), {
+    stiffness: 75,
+    damping: 25,
+  });
+
+  const heroNameOpacity = useSpring(useTransform(scrollYProgress, [0, 0.9], [1, 0]), {
+    stiffness: 85,
+    damping: 24,
+  });
+  const heroNameScale = useSpring(useTransform(scrollYProgress, [0, 1], [1, 0.95]), {
+    stiffness: 85,
+    damping: 24,
+  });
+  const heroButtonsOpacity = useSpring(useTransform(scrollYProgress, [0, 0.9], [1, 0]), {
+    stiffness: 85,
+    damping: 24,
+  });
+  const heroButtonsScale = useSpring(useTransform(scrollYProgress, [0, 1], [1, 0.95]), {
+    stiffness: 85,
+    damping: 24,
+  });
 
   useEffect(() => {
     if (tagline.length < fullTagline.length) {
@@ -65,29 +107,13 @@ const Hero = () => {
     })
   };
 
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-
-    // Opposite-direction movement for subtle parallax depth.
-    mouseX.set(-x * 20);
-    mouseY.set(-y * 20);
-  };
-
-  const handleMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
   return (
-    <section className="hero" id="home" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
+    <section className="hero" id="home" ref={heroRef}>
       {/* Background Enhancement */}
       <div className="hero-bg">
-        <div className="hero-shape shape1"></div>
-        <motion.div className="hero-parallax-layer" style={{ x: parallaxX, y: parallaxY }}>
-          <div className="hero-shape shape2"></div>
-        </motion.div>
+        <motion.div className="hero-orb orb-purple" style={{ y: orbFarY }} />
+        <motion.div className="hero-orb orb-blue" style={{ y: orbMidY }} />
+        <motion.div className="hero-orb orb-slate" style={{ y: orbNearY }} />
       </div>
 
       <div className="container" style={{ position: 'relative', width: '100%' }}>
@@ -96,11 +122,11 @@ const Hero = () => {
             Hi, I'm
           </motion.span>
 
-          <motion.h1 variants={revealVariants} custom={0.2} className="hero-title">
+          <motion.h1 variants={revealVariants} custom={0.2} className="hero-title" style={{ y: titleY, opacity: heroNameOpacity, scale: heroNameScale }}>
             Navaneetha Krishna R
           </motion.h1>
 
-          <motion.h2 variants={revealVariants} custom={0.4} className="hero-subtitle" style={{ minHeight: '3.6rem', marginBottom: '1rem' }}>
+          <motion.h2 variants={revealVariants} custom={0.4} className="hero-subtitle" style={{ minHeight: '3.6rem', marginBottom: '1rem', y: subtitleY }}>
             {currentRole}<span style={{ borderRight: '3px solid var(--accent-color)', marginLeft: '4px', animation: 'blink 1s step-end infinite' }}>&nbsp;</span>
           </motion.h2>
 
@@ -111,7 +137,7 @@ const Hero = () => {
 
 
 
-          <motion.div variants={revealVariants} custom={0.4} className="hero-btns">
+          <motion.div variants={revealVariants} custom={0.4} className="hero-btns" style={{ opacity: heroButtonsOpacity, scale: heroButtonsScale }}>
             <a href="#projects" className="btn btn-hero-primary">
               View Projects <ArrowRight size={18} />
             </a>
