@@ -125,9 +125,6 @@ const Navbar = () => {
                   {isDark ? <Sun size={18} /> : <Moon size={18} />}
                 </span>
               </button>
-              <a href="#contact" className="btn btn-primary cta-btn">
-                Start Project
-              </a>
             </div>
           </div>
 
