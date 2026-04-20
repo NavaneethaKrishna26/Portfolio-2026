@@ -722,6 +722,12 @@ html.dark .theme-toggle-mobile:hover {
   pointer-events: none;
 }
 
+.hero-parallax-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
 .hero-shape {
   position: absolute;
   border-radius: 50%;
@@ -771,7 +777,7 @@ html.dark .hero-shape {
 
 .hero-title {
   font-size: 4.5rem;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.1;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
@@ -779,11 +785,15 @@ html.dark .hero-shape {
 
 .hero-subtitle {
   font-size: 3rem;
-  color: var(--text-muted);
+  color: #64748b;
   font-weight: 600;
   margin-bottom: 2rem;
   line-height: 1.2;
   letter-spacing: -0.02em;
+}
+
+html.dark .hero-subtitle {
+  color: #94a3b8;
 }
 
 .hero-desc {
@@ -797,6 +807,19 @@ html.dark .hero-shape {
 .hero-btns {
   display: flex;
   gap: 1rem;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: -15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.875rem;
 }
 
 /* About */
