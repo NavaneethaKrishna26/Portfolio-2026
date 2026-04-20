@@ -80,18 +80,19 @@ const Navbar = () => {
         transition={{ duration: 0.5, ease: 'easeOut' }}
       >
         <motion.div className="scroll-progress-bar" style={{ scaleX }} />
-        <div className="container" style={{ position: 'relative' }}>
-          <motion.div 
-            className="logo" 
+        <div className="container navbar-shell">
+          <motion.button
+            type="button"
+            className="logo logo-badge"
             onClick={scrollToTop}
-            whileHover={{ scale: 1.05 }}
-            style={{ cursor: 'pointer', textShadow: isScrolled ? 'none' : '0 0 10px rgba(99, 102, 241, 0.3)' }}
+            whileHover={{ scale: 1.03 }}
+            aria-label="Back to top"
           >
             NK<span>.dev</span>
-          </motion.div>
+          </motion.button>
           
           <div className="desktop-menu">
-            <div className="nav-links">
+            <div className="nav-links nav-segmented">
               {navItems.map((item, idx) => (
                 <motion.a 
                   key={item.name}
@@ -101,7 +102,7 @@ const Navbar = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 + idx * 0.1 }}
                 >
-                  {item.name}
+                  <span className="nav-link-label">{item.name}</span>
                   {activeSection === item.href.substring(1) && (
                     <motion.div 
                       className="active-indicator"
@@ -120,17 +121,20 @@ const Navbar = () => {
                 aria-label="Toggle theme"
                 title="Toggle theme"
               >
-                {isDark ? <Sun size={20} /> : <Moon size={20} />}
+                <span className="theme-toggle-inner">
+                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                </span>
               </button>
               <a href="#contact" className="btn btn-primary cta-btn">
-                Let's Talk
+                Start Project
               </a>
             </div>
           </div>
 
           <div className="mobile-toggle">
-             <button onClick={() => setMobileMenuOpen(true)}>
+             <button onClick={() => setMobileMenuOpen(true)} aria-label="Open menu">
                <Menu size={24} />
+               <span>Menu</span>
              </button>
           </div>
         </div>
@@ -148,14 +152,16 @@ const Navbar = () => {
           >
             <motion.div 
               className="mobile-menu-content"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
+              initial={{ y: -28, opacity: 0, scale: 0.96 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: -20, opacity: 0, scale: 0.97 }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="mobile-menu-header">
-                <div className="logo" onClick={scrollToTop}>NK<span>.dev</span></div>
+                <button type="button" className="logo" onClick={scrollToTop}>
+                  NK<span>.dev</span>
+                </button>
                 <button onClick={() => setMobileMenuOpen(false)}><X size={24} /></button>
               </div>
               <div className="mobile-nav-links">
@@ -166,7 +172,7 @@ const Navbar = () => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={activeSection === item.href.substring(1) ? 'active' : ''}
                   >
-                    {item.name}
+                    <span className="nav-link-label">{item.name}</span>
                   </a>
                 ))}
               </div>

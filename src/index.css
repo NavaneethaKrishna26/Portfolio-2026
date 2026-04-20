@@ -197,128 +197,201 @@ html.dark .btn-outline:hover {
 /* Enhanced Navbar Styles */
 .navbar {
   position: fixed;
-  top: 0;
+  top: 0.8rem;
   left: 0;
   width: 100%;
-  background-color: transparent;
   z-index: 100;
-  padding: 1.5rem 0;
-  transition: padding 0.3s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  border-bottom: 1px solid transparent;
-}
-
-.navbar.scrolled {
-  padding: 1rem 0;
-  background-color: rgba(250, 250, 250, 0.75);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  border-bottom: 1px solid rgba(229, 229, 229, 0.6);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-}
-
-html.dark .navbar.scrolled {
-  background-color: rgba(10, 10, 10, 0.75);
-  border-bottom: 1px solid rgba(38, 38, 38, 0.6);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  padding: 0 0 0.8rem;
+  pointer-events: none;
 }
 
 .scroll-progress-bar {
   position: absolute;
-  top: 0;
+  top: calc(100% + 0.15rem);
   left: 0;
   right: 0;
-  height: 2px;
-  background: var(--accent-color);
+  height: 3px;
+  background: linear-gradient(90deg, #0f172a 0%, var(--accent-color) 50%, #0f766e 100%);
   transform-origin: 0%;
   z-index: 101;
 }
 
-.navbar .container {
+.navbar .container.navbar-shell {
+  pointer-events: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.95), rgba(246, 247, 251, 0.9));
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 14px 38px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-radius: 999px;
+  padding: 0.6rem 0.8rem 0.6rem 1rem;
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar.scrolled .container.navbar-shell {
+  transform: translateY(-2px);
+  box-shadow:
+    0 16px 42px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.12);
+}
+
+html.dark .navbar .container.navbar-shell {
+  background:
+    linear-gradient(130deg, rgba(16, 16, 16, 0.94), rgba(26, 26, 26, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .logo {
+  border: none;
+  background: transparent;
+  color: var(--text-main);
   font-weight: 800;
-  font-size: 1.35rem;
-  letter-spacing: -0.03em;
-  transition: text-shadow 0.3s ease;
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+  cursor: pointer;
 }
 
 .logo span {
   color: var(--accent-color);
 }
 
+.logo-badge {
+  padding: 0.55rem 0.95rem;
+  border-radius: 999px;
+  background: linear-gradient(140deg, rgba(79, 70, 229, 0.15), rgba(15, 23, 42, 0.07));
+  border: 1px solid rgba(79, 70, 229, 0.18);
+  box-shadow: 0 5px 15px rgba(79, 70, 229, 0.15);
+}
+
+html.dark .logo-badge {
+  background: linear-gradient(140deg, rgba(99, 102, 241, 0.22), rgba(10, 10, 10, 0.2));
+  border-color: rgba(129, 140, 248, 0.28);
+}
+
 .desktop-menu {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: 1rem;
 }
 
 /* Nav Links - Desktop */
 .nav-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 0.4rem;
+}
+
+.nav-segmented {
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 999px;
+  padding: 0.3rem;
+}
+
+html.dark .nav-segmented {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .nav-links a {
   position: relative;
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
   color: var(--text-muted);
-  transition: color 0.2s, transform 0.2s;
-  padding: 0.5rem 0;
+  transition: color 0.2s, transform 0.2s, background-color 0.2s;
+  padding: 0.5rem 0.8rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  overflow: hidden;
 }
 
 .nav-links a:hover {
   color: var(--text-main);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  background-color: rgba(79, 70, 229, 0.08);
 }
 
 .nav-links a.active {
   color: var(--text-main);
 }
 
+.nav-link-label {
+  position: relative;
+  z-index: 1;
+}
+
 .active-indicator {
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: var(--accent-color);
-  border-radius: 2px;
-  box-shadow: 0 0 8px var(--accent-color);
+  inset: 0;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(79, 70, 229, 0.24);
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.2);
+  z-index: 0;
+}
+
+html.dark .active-indicator {
+  background: rgba(30, 30, 30, 0.85);
+  border-color: rgba(129, 140, 248, 0.3);
 }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
+  gap: 0.7rem;
 }
 
 .theme-toggle {
-  background: transparent;
-  border: none;
+  background: rgba(15, 23, 42, 0.04);
+  border: 1px solid rgba(15, 23, 42, 0.08);
   cursor: pointer;
   color: var(--text-muted);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem;
+  padding: 0.2rem;
   transition: color 0.2s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
   border-radius: 50%;
 }
 
+.theme-toggle-inner {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
+
+.theme-toggle:hover .theme-toggle-inner {
+  background-color: rgba(79, 70, 229, 0.08);
+}
+
 .theme-toggle:hover {
   color: var(--text-main);
-  transform: scale(1.15) rotate(15deg);
-  background-color: var(--bg-secondary);
+  transform: scale(1.08) rotate(8deg);
+  background-color: rgba(79, 70, 229, 0.08);
+}
+
+html.dark .theme-toggle {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .cta-btn {
-  padding: 0.5rem 1.25rem;
-  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
   border-radius: 2rem;
 }
 
@@ -328,11 +401,22 @@ html.dark .navbar.scrolled {
 }
 
 .mobile-toggle button {
-  background: transparent;
-  border: none;
+  background: rgba(79, 70, 229, 0.1);
+  border: 1px solid rgba(79, 70, 229, 0.2);
+  border-radius: 999px;
   cursor: pointer;
-  color: var(--text-main);
+  color: var(--accent-color);
   display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.75rem;
+  font-weight: 600;
+  font-size: 0.82rem;
+}
+
+html.dark .mobile-toggle button {
+  background: rgba(129, 140, 248, 0.15);
+  border-color: rgba(129, 140, 248, 0.28);
 }
 
 @media (max-width: 860px) {
@@ -351,43 +435,50 @@ html.dark .navbar.scrolled {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(79, 70, 229, 0.14), transparent 45%),
+    rgba(8, 8, 8, 0.52);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index: 999;
 }
 
 .mobile-menu-content {
   position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 85%;
-  max-width: 350px;
-  background-color: var(--bg-color);
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  top: 5.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(92%, 420px);
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.97), rgba(244, 246, 251, 0.95));
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.22);
+  padding: 1.2rem;
   display: flex;
   flex-direction: column;
+  border-radius: 1.4rem;
 }
 
 html.dark .mobile-menu-content {
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(145deg, rgba(18, 18, 18, 0.98), rgba(24, 24, 24, 0.95));
+  border-color: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.56);
 }
 
 .mobile-menu-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.85rem;
 }
 
 .mobile-menu-header button {
-  background: var(--bg-secondary);
+  background: rgba(15, 23, 42, 0.06);
   border: 1px solid var(--border-color);
   border-radius: 50%;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -403,30 +494,37 @@ html.dark .mobile-menu-content {
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0.55rem;
   flex-grow: 1;
 }
 
 .mobile-nav-links a {
-  font-size: 1.25rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-muted);
-  padding: 0.75rem 0;
-  border-bottom: 1px solid var(--border-color);
-  transition: color 0.2s, padding-left 0.2s;
+  padding: 0.8rem 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.85rem;
+  transition: color 0.2s, transform 0.2s, border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
 
 .mobile-nav-links a:hover,
 .mobile-nav-links a.active {
   color: var(--accent-color);
-  padding-left: 0.75rem;
+  transform: translateX(4px);
+  border-color: rgba(79, 70, 229, 0.35);
 }
 
 .mobile-bottom-actions {
-  margin-top: auto;
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
 }
 
 .theme-toggle-mobile {
@@ -434,20 +532,34 @@ html.dark .mobile-menu-content {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  padding: 1rem;
-  background: var(--bg-secondary);
+  padding: 0.85rem;
+  background: rgba(79, 70, 229, 0.08);
   border: 1px solid var(--border-color);
   border-radius: 0.75rem;
   color: var(--text-main);
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 0.9rem;
   cursor: pointer;
   width: 100%;
 }
 
 .mobile-bottom-actions .btn {
   width: 100%;
-  padding: 1rem;
+  padding: 0.9rem;
+}
+
+@media (max-width: 520px) {
+  .navbar {
+    top: 0.55rem;
+  }
+
+  .navbar .container.navbar-shell {
+    padding-inline: 0.65rem;
+  }
+
+  .mobile-toggle button span {
+    display: none;
+  }
 }
 
 /* Header/Hero */
