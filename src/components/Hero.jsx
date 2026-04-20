@@ -100,10 +100,10 @@ const Hero = () => {
 
 
           <motion.div variants={itemVariants} className="hero-btns">
-            <a href="#projects" className="btn btn-primary">
+            <a href="#projects" className="btn btn-hero-primary">
               View Projects <ArrowRight size={18} />
             </a>
-            <a href="/resume.pdf" download="Navaneetha_Krishna_Resume.pdf" className="btn btn-outline">
+            <a href="/resume.pdf" download="Navaneetha_Krishna_Resume.pdf" className="btn btn-hero-secondary">
               Download Resume <Download size={18} />
             </a>
           </motion.div>
