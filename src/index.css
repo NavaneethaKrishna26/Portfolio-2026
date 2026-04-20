@@ -300,11 +300,12 @@ html.dark .btn-hero-secondary:hover {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background:
-    linear-gradient(110deg, rgba(255, 255, 255, 0.95), rgba(246, 247, 251, 0.9));
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow:
-    0 14px 38px rgba(15, 23, 42, 0.08),
+    0 8px 32px rgba(31, 38, 135, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border-radius: 999px;
   padding: 0.6rem 0.8rem 0.6rem 1rem;
@@ -313,19 +314,29 @@ html.dark .btn-hero-secondary:hover {
 
 .navbar.scrolled .container.navbar-shell {
   transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.8);
   box-shadow:
-    0 16px 42px rgba(15, 23, 42, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
-  border-color: rgba(15, 23, 42, 0.12);
+    0 12px 40px rgba(31, 38, 135, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
 html.dark .navbar .container.navbar-shell {
-  background:
-    linear-gradient(130deg, rgba(16, 16, 16, 0.94), rgba(26, 26, 26, 0.92));
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow:
-    0 16px 38px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+html.dark .navbar.scrolled .container.navbar-shell {
+  background: rgba(10, 10, 10, 0.75);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .logo {
