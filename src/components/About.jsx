@@ -52,7 +52,7 @@ const About = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          <motion.h2 variants={fadeUp} className="section-title">About Me</motion.h2>
+          <motion.h2 variants={fadeUp} className="section-title">Profile</motion.h2>
 
           <div style={{ display: 'flex', flexDirection: 'row', gap: '3rem', alignItems: 'flex-start', flexWrap: 'wrap', justifyContent: 'center' }}>
 

@@ -102,7 +102,7 @@ const Skills = () => {
           variants={fadeUp}
           style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <h2 className="section-title" style={{ marginBottom: '0.75rem' }}>My Skills</h2>
+          <h2 className="section-title" style={{ marginBottom: '0.75rem' }}>Stack</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', margin: '0 auto', maxWidth: '650px' }}>
             I focus on building clean, scalable, and well-structured full stack applications.
           </p>

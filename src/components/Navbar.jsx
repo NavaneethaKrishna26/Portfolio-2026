@@ -3,10 +3,10 @@ import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 
 const navItems = [
-  { name: 'About', href: '#about' },
-  { name: 'Education', href: '#education' },
-  { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
+  { name: 'Profile', href: '#about' },
+  { name: 'Background', href: '#education' },
+  { name: 'Stack', href: '#skills' },
+  { name: 'Works', href: '#projects' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -149,10 +149,10 @@ const Navbar = () => {
           >
             <motion.div 
               className="mobile-menu-content"
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 30, stiffness: 300, mass: 0.8 }}
               onClick={(e) => e.stopPropagation()}
             >
               <div className="mobile-menu-header">

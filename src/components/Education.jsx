@@ -43,7 +43,7 @@ const Education = () => {
           transition={{ duration: 0.6 }}
           style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <h2 className="section-title" style={{ marginBottom: '0.75rem' }}>Education</h2>
+          <h2 className="section-title" style={{ marginBottom: '0.75rem' }}>Background</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', margin: '0 auto', maxWidth: '650px' }}>
             My academic journey and qualifications.
           </p>

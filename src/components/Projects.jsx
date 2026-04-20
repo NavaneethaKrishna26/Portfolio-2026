@@ -229,7 +229,7 @@ const Projects = () => {
           transition={{ duration: 0.6 }}
           style={{ textAlign: 'center', marginBottom: '3rem' }}
         >
-          <h2 className="section-title" style={{ marginBottom: '0.75rem' }}>Projects</h2>
+          <h2 className="section-title" style={{ marginBottom: '0.75rem' }}>Works</h2>
           <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', margin: '0 auto', maxWidth: '750px' }}>
             Here are some of the projects I’ve built, focusing on backend architecture, authentication, and full stack systems.
           </p>
