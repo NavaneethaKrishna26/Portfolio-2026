@@ -537,7 +537,7 @@ html.dark .mobile-toggle button {
   top: 5.25rem;
   left: 50%;
   transform: translateX(-50%);
-  width: min(92%, 420px);
+  width: min(90vw, 380px);
   background: linear-gradient(140deg, rgba(255, 255, 255, 0.97), rgba(244, 246, 251, 0.95));
   border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.22);
@@ -560,6 +560,7 @@ html.dark .mobile-menu-content {
   margin-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 0.85rem;
+  width: 100%;
 }
 
 .mobile-menu-header button {
@@ -591,20 +592,24 @@ html.dark .mobile-menu-content {
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--text-muted);
-  padding: 0.8rem 0.95rem;
+  padding: 0.75rem 1rem;
   border: 1px solid var(--border-color);
-  border-radius: 0.85rem;
-  transition: color 0.2s, transform 0.2s, border-color 0.2s;
+  border-radius: 0.65rem;
+  transition: color 0.2s, transform 0.2s, border-color 0.2s, background-color 0.2s;
   display: flex;
   align-items: center;
-  gap: 0;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mobile-nav-links a:hover,
 .mobile-nav-links a.active {
   color: var(--accent-color);
-  transform: translateX(4px);
+  transform: translateX(2px);
   border-color: rgba(79, 70, 229, 0.35);
+  background-color: rgba(79, 70, 229, 0.08);
 }
 
 .mobile-bottom-actions {
