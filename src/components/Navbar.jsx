@@ -175,12 +175,13 @@ const Navbar = () => {
           >
             <motion.div 
               className="mobile-menu-content"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
+              initial={{ y: '100%' }}
+              animate={{ y: 0 }}
+              exit={{ y: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300, mass: 0.8 }}
               onClick={(e) => e.stopPropagation()}
             >
+              <div className="mobile-sheet-handle" aria-hidden="true" />
               <div className="mobile-menu-header">
                 <button type="button" className="logo" onClick={scrollToTop}>
                   NK<span>.dev</span>
