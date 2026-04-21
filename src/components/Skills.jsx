@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, Sparkles, Network, Database, Settings, Zap, 
@@ -84,6 +84,22 @@ const getIcon = (skillName) => {
 const Skills = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeCategory = skillsData[activeIndex];
+  const sidebarRef = useRef(null);
+  const buttonRefs = useRef([]);
+
+  useEffect(() => {
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    if (!isMobile) return;
+
+    const activeButton = buttonRefs.current[activeIndex];
+    if (!activeButton) return;
+
+    activeButton.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    });
+  }, [activeIndex]);
 
   const fadeUp = {
     hidden: { opacity: 0, y: 20 },
@@ -118,12 +134,15 @@ const Skills = () => {
         >
           
           {/* SIDEBAR NAVIGATION */}
-          <div className="skills-sidebar">
+          <div className="skills-sidebar" ref={sidebarRef}>
             {skillsData.map((category, index) => (
               <button
                 key={category.title}
                 className={`sidebar-btn ${activeIndex === index ? 'active-tab' : ''}`}
                 onClick={() => setActiveIndex(index)}
+                ref={(element) => {
+                  buttonRefs.current[index] = element;
+                }}
               >
                 <div className="btn-content">
                   <span>{category.title}</span>
@@ -406,6 +425,8 @@ const Skills = () => {
             flex-direction: row;
             overflow-x: auto;
             padding: 0;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
           }
           
           /* Hide scrollbar for clean tab look on mobile */
@@ -415,6 +436,8 @@ const Skills = () => {
           .sidebar-btn {
             padding: 1rem 1.5rem;
             white-space: nowrap;
+            scroll-snap-align: center;
+            scroll-snap-stop: always;
           }
 
           .active-line {
