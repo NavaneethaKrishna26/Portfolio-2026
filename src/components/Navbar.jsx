@@ -10,6 +10,25 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ];
 
+const mobileLinksContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.08,
+    },
+  },
+};
+
+const mobileLinkItem = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.28, ease: 'easeOut' },
+  },
+};
+
 const Navbar = () => {
   const [isDark, setIsDark] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -168,18 +187,24 @@ const Navbar = () => {
                 </button>
                 <button onClick={() => setMobileMenuOpen(false)}><X size={24} /></button>
               </div>
-              <div className="mobile-nav-links">
+              <motion.div
+                className="mobile-nav-links"
+                variants={mobileLinksContainer}
+                initial="hidden"
+                animate="visible"
+              >
                 {navItems.map((item) => (
-                  <a 
+                  <motion.a 
                     key={item.name} 
                     href={item.href} 
                     onClick={() => setMobileMenuOpen(false)}
                     className={activeSection === item.href.substring(1) ? 'active' : ''}
+                    variants={mobileLinkItem}
                   >
                     <span className="nav-link-label">{item.name}</span>
-                  </a>
+                  </motion.a>
                 ))}
-              </div>
+              </motion.div>
               <div className="mobile-bottom-actions">
                   <button onClick={toggleTheme} className="theme-toggle-mobile">
                     {isDark ? <><Sun size={20} /> Light Mode</> : <><Moon size={20} /> Dark Mode</>}
